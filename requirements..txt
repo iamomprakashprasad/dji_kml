@@ -1,0 +1,7 @@
+fastkml==0.12
+geographiclib==2.0
+geopy==2.4.1
+numpy==2.0.0
+pygeoif==0.7
+python-dateutil==2.9.0.post0
+six==1.16.0
