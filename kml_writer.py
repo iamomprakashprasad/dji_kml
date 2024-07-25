@@ -1,7 +1,7 @@
 from constants import global_speed, final_coordinates
 
 index = 0
-photo_cout = 203
+photo_cout = 1
 initial_placemark = """      <Placemark>
         <Point>
           <coordinates>
@@ -33,7 +33,7 @@ initial_placemark = """      <Placemark>
               <wpml:gimbalHeadingYawBase>aircraft</wpml:gimbalHeadingYawBase>
               <wpml:gimbalRotateMode>absoluteAngle</wpml:gimbalRotateMode>
               <wpml:gimbalPitchRotateEnable>1</wpml:gimbalPitchRotateEnable>
-              <wpml:gimbalPitchRotateAngle>-90</wpml:gimbalPitchRotateAngle>
+              <wpml:gimbalPitchRotateAngle>0</wpml:gimbalPitchRotateAngle>
               <wpml:gimbalRollRotateEnable>0</wpml:gimbalRollRotateEnable>
               <wpml:gimbalRollRotateAngle>0</wpml:gimbalRollRotateAngle>
               <wpml:gimbalYawRotateEnable>0</wpml:gimbalYawRotateEnable>
@@ -123,16 +123,16 @@ wpml_file = wpml_file_initial.format(global_speed, global_speed)
 with open(final_coordinates, "r") as file:
     for each_line in file.readlines():
       print(f"{each_line=}")
-      longitude, latitude = each_line[:-1].split(", ")
+      longitude, latitude, altitude = each_line[:-1].split(", ")
       if index:
-        wpml_file += placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, 50.0, 2.6,
+        wpml_file += placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, altitude, 2.6,
                                       index, index, index, photo_cout)
         index+=1
       else:
-        wpml_file += initial_placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, 50.0, 2.6,
+        wpml_file += initial_placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, altitude, 2.6,
                                               index, index, index, photo_cout)
         index+=1
-
+      photo_cout+=1
 wpml_file += wpml_file_ending_lines
 with open("wat.wpml", "w") as file:
     file.write(wpml_file)
