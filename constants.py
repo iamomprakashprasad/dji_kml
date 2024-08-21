@@ -5,4 +5,4 @@ wpml_coordinate_tag = "<coordinates>"
 wpml_op_file = "waypoint_output.wpml"
 trigger_distance = 10  # 2.6 * 5  # drone speed (metre/second) * trigger time (second)
 final_coordinates = "all_coordinates.txt"
-global_speed = 2.6  # drone speed (metre/second)
+global_speed = 0.6  # drone speed (metre/second)

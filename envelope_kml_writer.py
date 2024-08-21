@@ -33,7 +33,7 @@ initial_placemark = """      <Placemark>
               <wpml:gimbalHeadingYawBase>aircraft</wpml:gimbalHeadingYawBase>
               <wpml:gimbalRotateMode>absoluteAngle</wpml:gimbalRotateMode>
               <wpml:gimbalPitchRotateEnable>1</wpml:gimbalPitchRotateEnable>
-              <wpml:gimbalPitchRotateAngle>-90</wpml:gimbalPitchRotateAngle>
+              <wpml:gimbalPitchRotateAngle>0</wpml:gimbalPitchRotateAngle>
               <wpml:gimbalRollRotateEnable>0</wpml:gimbalRollRotateEnable>
               <wpml:gimbalRollRotateAngle>0</wpml:gimbalRollRotateAngle>
               <wpml:gimbalYawRotateEnable>0</wpml:gimbalYawRotateEnable>
@@ -45,6 +45,13 @@ initial_placemark = """      <Placemark>
           </wpml:action>
           <wpml:action>
             <wpml:actionId>1</wpml:actionId>
+            <wpml:actionActuatorFunc>rotateYaw</wpml:actionActuatorFunc>
+            <wpml:actionActuatorFuncParam>
+              <wpml:aircraftHeading>250</wpml:aircraftHeading>
+            </wpml:actionActuatorFuncParam>
+          </wpml:action>
+          <wpml:action>
+            <wpml:actionId>2</wpml:actionId>
             <wpml:actionActuatorFunc>takePhoto</wpml:actionActuatorFunc>
             <wpml:actionActuatorFuncParam>
               <wpml:fileSuffix>point{}</wpml:fileSuffix>
@@ -80,6 +87,13 @@ placemark = """      <Placemark>
           </wpml:actionTrigger>
           <wpml:action>
             <wpml:actionId>0</wpml:actionId>
+            <wpml:actionActuatorFunc>rotateYaw</wpml:actionActuatorFunc>
+            <wpml:actionActuatorFuncParam>
+              <wpml:aircraftHeading>250</wpml:aircraftHeading>
+            </wpml:actionActuatorFuncParam>
+          </wpml:action>
+          <wpml:action>
+            <wpml:actionId>1</wpml:actionId>
             <wpml:actionActuatorFunc>takePhoto</wpml:actionActuatorFunc>
             <wpml:actionActuatorFuncParam>
               <wpml:fileSuffix>point{}</wpml:fileSuffix>
@@ -134,5 +148,5 @@ with open(final_coordinates, "r") as file:
         index+=1
       photo_cout+=1
 wpml_file += wpml_file_ending_lines
-with open("wat.wpml", "w") as file:
+with open("ewat.wpml", "w") as file:
     file.write(wpml_file)

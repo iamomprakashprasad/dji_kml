@@ -5,9 +5,10 @@ from constants import cordinate_output_file
 from fastkml import geometry
 from fastkml import kml
 
-kml_filename = "foo.kml"
+# kml_filename = "foo.kml"
+kml_file = '/home/sachin/flight_planners/survey-flight-planner/top_view.kml'
 
-with open("/home/om/kml_modifier/vi.kml") as kml_file:
+with open(kml_file) as kml_file:
     doc = kml_file.read().encode('utf-8')
     k = kml.KML()
     k.from_string(doc)
@@ -24,7 +25,6 @@ with open("/home/om/kml_modifier/vi.kml") as kml_file:
                     # these are long, lat tuples
                     all_coordinates.append(coord)
 # Example usage
-kml_file = '/home/om/kml_modifier/vi.kml'
 
 with open("all_coordinates.txt", "w") as coord_file:
     for each_coord in all_coordinates:
