@@ -6,7 +6,7 @@ from fastkml import geometry
 from fastkml import kml
 
 # kml_filename = "foo.kml"
-kml_file = '/home/sachin/flight_planners/survey-flight-planner/top_view.kml'
+kml_file = '/home/om/3d_mapping/survey-flight-planner/envelope.kml'
 
 with open(kml_file) as kml_file:
     doc = kml_file.read().encode('utf-8')

@@ -12,7 +12,10 @@ initial_placemark = """      <Placemark>
         <wpml:executeHeight>{}</wpml:executeHeight>
         <wpml:waypointSpeed>{}</wpml:waypointSpeed>
         <wpml:waypointHeadingParam>
-          <wpml:waypointHeadingMode>followWayline</wpml:waypointHeadingMode>
+          <wpml:waypointHeadingMode>smoothTransition</wpml:waypointHeadingMode>
+          <wpml:waypointHeadingAngle>{}</wpml:waypointHeadingAngle>
+          <wpml:waypointPoiPoint>0.000000,0.000000,0.000000</wpml:waypointPoiPoint>
+          <wpml:waypointHeadingAngleEnable>1</wpml:waypointHeadingAngleEnable>
         </wpml:waypointHeadingParam>
         <wpml:waypointTurnParam>
           <wpml:waypointTurnMode>toPointAndStopWithDiscontinuityCurvature</wpml:waypointTurnMode>
@@ -45,13 +48,6 @@ initial_placemark = """      <Placemark>
           </wpml:action>
           <wpml:action>
             <wpml:actionId>1</wpml:actionId>
-            <wpml:actionActuatorFunc>rotateYaw</wpml:actionActuatorFunc>
-            <wpml:actionActuatorFuncParam>
-              <wpml:aircraftHeading>250</wpml:aircraftHeading>
-            </wpml:actionActuatorFuncParam>
-          </wpml:action>
-          <wpml:action>
-            <wpml:actionId>2</wpml:actionId>
             <wpml:actionActuatorFunc>takePhoto</wpml:actionActuatorFunc>
             <wpml:actionActuatorFuncParam>
               <wpml:fileSuffix>point{}</wpml:fileSuffix>
@@ -71,7 +67,10 @@ placemark = """      <Placemark>
         <wpml:executeHeight>{}</wpml:executeHeight>
         <wpml:waypointSpeed>{}</wpml:waypointSpeed>
         <wpml:waypointHeadingParam>
-          <wpml:waypointHeadingMode>followWayline</wpml:waypointHeadingMode>
+          <wpml:waypointHeadingMode>smoothTransition</wpml:waypointHeadingMode>
+          <wpml:waypointHeadingAngle>{}</wpml:waypointHeadingAngle>
+          <wpml:waypointPoiPoint>0.000000,0.000000,0.000000</wpml:waypointPoiPoint>
+          <wpml:waypointHeadingAngleEnable>1</wpml:waypointHeadingAngleEnable>
         </wpml:waypointHeadingParam>
         <wpml:waypointTurnParam>
           <wpml:waypointTurnMode>toPointAndStopWithDiscontinuityCurvature</wpml:waypointTurnMode>
@@ -87,13 +86,6 @@ placemark = """      <Placemark>
           </wpml:actionTrigger>
           <wpml:action>
             <wpml:actionId>0</wpml:actionId>
-            <wpml:actionActuatorFunc>rotateYaw</wpml:actionActuatorFunc>
-            <wpml:actionActuatorFuncParam>
-              <wpml:aircraftHeading>250</wpml:aircraftHeading>
-            </wpml:actionActuatorFuncParam>
-          </wpml:action>
-          <wpml:action>
-            <wpml:actionId>1</wpml:actionId>
             <wpml:actionActuatorFunc>takePhoto</wpml:actionActuatorFunc>
             <wpml:actionActuatorFuncParam>
               <wpml:fileSuffix>point{}</wpml:fileSuffix>
@@ -140,11 +132,11 @@ with open(final_coordinates, "r") as file:
       longitude, latitude, altitude = each_line[:-1].split(", ")
       if index:
         wpml_file += placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, altitude, global_speed,
-                                      index, index, index, photo_cout)
+                                      1, index, index, index, photo_cout)
         index+=1
       else:
         wpml_file += initial_placemark.format(round(float(longitude), 6), round(float(latitude), 6), index, altitude, global_speed,
-                                              index, index, index, photo_cout)
+                                              1, index, index, index, photo_cout)
         index+=1
       photo_cout+=1
 wpml_file += wpml_file_ending_lines
